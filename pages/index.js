@@ -3,6 +3,7 @@ import Banner from "./components/Banner";
 import MovieSection from "./components/ResultSection";
 
 const OverviewPage = () => {
+    
     return (
         <div>
             <Navigation />
