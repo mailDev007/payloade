@@ -6,6 +6,12 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+body{
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -13,4 +19,9 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.horizontal-alignment{
+  margin-left: 77px;
+  margin-right: 77px;
 }

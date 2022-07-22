@@ -1,0 +1,14 @@
+.bannerSection{
+    height: 550px;
+    position: relative;
+    width: 100%;
+}
+
+.bannerText{
+    position: absolute;
+    top: 50%;
+    transform: translate(77px, -50%);
+    width: 490px;
+    font-size: 72px;
+    color: white;
+}
