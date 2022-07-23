@@ -12,7 +12,7 @@ const MovieSection = () => {
     let allMovies = [];
     
 
-    const searchParam = (query) => `http://www.omdbapi.com/?s=${query}&apikey=3f57fd83`;
+    const searchParam = (query) => `https://www.omdbapi.com/?s=${query}&apikey=3f57fd83`;
 
     const onChange = useCallback((event) => {
         const query = event.target.value;
