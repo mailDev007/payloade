@@ -44,7 +44,7 @@ export default SingleMovie;
   // This gets called on every request
   export async function getServerSideProps(context) {
     // Fetch data from external API
-    const res = await fetch(`http://www.omdbapi.com/?i=${context.query.movieid}&apikey=3f57fd83`)
+    const res = await fetch(`https://www.omdbapi.com/?i=${context.query.movieid}&apikey=3f57fd83`)
     const data = await res.json()
   
     // Pass data to the page via props
