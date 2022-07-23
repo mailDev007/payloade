@@ -1,0 +1,20 @@
+.contentCenter{
+    margin: 0 77px;
+    height: 300px;
+    display: flex;
+}
+
+.contentCenter img{
+    max-width: 100%;
+    width: 300px;
+    /* height: 300px */
+}
+
+.movieDetail{
+    margin-left: 30px;
+}
+
+.movieDetail h4{
+    margin-top: 0;
+    display: inline-block;
+}

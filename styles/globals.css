@@ -25,3 +25,18 @@ a {
   margin-left: 77px;
   margin-right: 77px;
 }
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.default-button{
+  padding: 10px 25px;
+  display: block;
+  margin: 40px 77px;
+  background: rgba(0, 128, 0, 0.727);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}

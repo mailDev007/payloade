@@ -1,12 +1,13 @@
-import Link from "next/link";
-import React, { Fragment, useCallback, useRef, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useRef, useState } from "react";
 import styles from './listing.module.css';
+import Router, {useRouter} from "next/router";
 
 const MovieSection = () => {
     const movieSearched = useRef(null);
     const [query, showResults] = useState([]);
     const [active, triggerListener] = useState(false);
-    const [results, setResults] = useState([]);
+    const [Search, setResults] = useState([]);
+    const router = useRouter();
 
     let allMovies = [];
     
@@ -21,10 +22,13 @@ const MovieSection = () => {
             fetch(searchParam(query))
             .then(res => res.json())
             .then(res => {
-                setResults(res.Search);
 
-                allMovies = res.Search;
-                console.log(results, allMovies, allMovies[0].Title);
+                if(res.Response == 'True'){
+                    setResults(res.Search);
+                }else{
+                    setResults([])
+                }
+                console.log(res.Search);
             })
         }
     }, []);
@@ -40,6 +44,10 @@ const MovieSection = () => {
             window.removeEventListener('input', onInput);
         }
     }, []);
+
+    const redirect = (row) => {
+        router.push(`/movies/${row}`);
+    }
     
     
     return (
@@ -50,15 +58,17 @@ const MovieSection = () => {
             </div>
 
 
-            { active && allMovies.length > 0 && (
+            { active && query.length > 2 && Search.length > 0 && (
                 <Fragment>
                     <h4>Movie Category</h4>
                     <ul className={styles.movieSlider}>
-                        {allMovies.map((row) => {
-                            <li>
-                                <img src={row.Poster}/>
-                                <p>{row.Title}</p>
-                            </li>
+                        {Search.map((row) => {
+                            return(
+                                <li key={row.imdbID} onClick={() => redirect(row.imdbID)}>
+                                    <img src={row.Poster}/>
+                                    <p>{row.Title}</p>
+                                </li>
+                            )
                         })}
                     </ul>
                 </Fragment>
