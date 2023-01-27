@@ -1,0 +1,35 @@
+.paginationButtons{
+    width: 80%;
+    /* height: 40px; */
+    padding-left: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.paginationButtons li{
+    margin: 0 3px;
+    display: inline-block;
+    border: 1px solid;
+    list-style-type: none;
+}
+
+.paginationButtons li a{
+    padding: 7px 20px;
+    display: block;
+    cursor: pointer;
+}
+
+.paginationButtons li a:hover{
+    background: #000;
+    color: white;
+}
+
+.activePage{
+    background-color: black;
+    color: white;
+}
+
+.disabledButtons{
+    background-color: rgba(0, 0, 0, 0.324);
+    color: white;
+}

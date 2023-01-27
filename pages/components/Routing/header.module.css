@@ -1,0 +1,19 @@
+.header{
+    background: #292929;
+    padding: 20px 77px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    font-size: 3rem;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.header a{
+    color: white;
+    font-size: 1.2rem;
+    line-height: 35px;
+}
