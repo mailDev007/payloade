@@ -9,22 +9,49 @@ import buttonTwo from "../../public/btn2.svg";
 
 
 const SingleMovie = () => {
+
     const router = useRouter();
     const parsedId = router.query.movieid;
+    const [url, setUrl] = useState(parsedId);
 
+    // const moviePath = `${BASEURL}/movie/${parsedId}`;
+    // console.log(parsedId, router.query);
+    // console.log(parsedId, router.query);
     const myMovie = [];
     const [featuredMovie, featureMovie] = useState([]);
-    console.log(featureMovie);
-
+    // console.log(featureMovie);
     useEffect((event) => {
-        fetch(`${BASEURL}/movie/${parsedId}`, Setting)
-        .then(res => res.json())
-        .then(res => {
-            // setGenre(res.genres);
-            featureMovie(res);
-            console.log(res);
-        })
-        
+        setUrl(parsedId);
+        if(parsedId !== undefined){
+            fetch(`${BASEURL}/movies/${parsedId}`, Setting)
+            .then(res => res.json())
+            .then(res => {
+                try{
+                    featureMovie(res);
+                } catch(e){
+                    console.log(e);
+                }
+                // setGenre(res.genres);
+                // console.log(res);
+            })
+    console.log(parsedId, router.query);
+
+        } else {
+            parsedId = router.query.movieid;
+            fetch(`${BASEURL}/movies/${parsedId}`, Setting)
+            .then(res => res.json())
+            .then(res => {
+                try{
+                    featureMovie(res);
+                } catch(e){
+                    console.log(e);
+                }
+                // setGenre(res.genres);
+                // console.log(res);
+            })
+            console.log(parsedId, router.query);
+
+        }
     }, []);
 
     const redirectUser = () => {
@@ -48,16 +75,16 @@ const SingleMovie = () => {
                     <div className={styles.titleGenresRating}>
                         <div>
                             <h3>
-                                <span>{featuredMovie.original_title}</span> - 
-                                <span>{featuredMovie.release_date}</span> -
-                                <span>{featuredMovie.runtime}</span>
+                                <span data-testid="movie-title">{featuredMovie.original_title}</span> - 
+                                <span data-testid="movie-release-date">{featuredMovie.release_date}</span> -
+                                <span data-testid="movie-runtime">{featuredMovie.runtime}</span>
                             </h3>
                             <span>8.5 | 350k</span>
                         </div>
                     </div>
                     <div className={styles.otherDetails}>
                         <div className={styles.singleMovieDetail}>
-                            <p>
+                            <p data-testid="movie-overview">
                                 {featuredMovie.overview}
                             </p>
                             <div className={styles.movieCasts}>
