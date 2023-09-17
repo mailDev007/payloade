@@ -1,56 +1,87 @@
+import React, { useEffect, useState } from 'react';
 import styles from './movie.module.css';
+import { BASEURL, Setting } from "../api/api";
+import { useRouter } from 'next/router';
+import Logo from "../../public/darkLogo.svg";
+import Poster from "../../public/Poster.png";
+import buttonOne from "../../public/btn1.svg";
+import buttonTwo from "../../public/btn2.svg";
 
-const SingleMovie = ({singlemovie}) => {
-    const myMovie = new Array(singlemovie);
 
-    console.log(myMovie);
-    
-    return(
-        <div>
-            <button onClick={() => history.go(-1)} className="default-button cursor-pointer horizontal-alignment">Go Back</button>
-            <div className={styles.contentCenter}>
-                <img src={myMovie[0].Poster}/>
-                <div className={styles.movieDetail}>
-                    <div>
-                        Title: <h4>{myMovie[0].Title}</h4>
+const SingleMovie = () => {
+    const router = useRouter();
+    const parsedId = router.query.movieid;
+
+    const myMovie = [];
+    const [featuredMovie, featureMovie] = useState([]);
+    console.log(featureMovie);
+
+    useEffect((event) => {
+        fetch(`${BASEURL}/movie/${parsedId}`, Setting)
+        .then(res => res.json())
+        .then(res => {
+            // setGenre(res.genres);
+            featureMovie(res);
+            console.log(res);
+        })
+        
+    }, []);
+
+    const redirectUser = () => {
+        window.location.href = "/";
+    }
+
+    // console.log(myMovie);
+    if(featuredMovie){
+        return(
+            <div className={styles.mainWrapper}>
+
+                <div className={styles.sidebarWrapper} onClick={redirectUser}>
+                    <div className={styles.logoArea}>
+                        <img src={Logo.src} alt="" />
                     </div>
-                    <div>
-                        Year: <h4>{myMovie[0].Year}</h4>
+                </div>
+                <div className={styles.contentWrapper}>
+                    <div className={styles.imageContainer}>
+                        <img src={"https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces"+featuredMovie.poster_path} alt="" className={styles.movieImage} />
                     </div>
-                    <div>
-                        Actors: <h4>{myMovie[0].Actors}</h4>
+                    <div className={styles.titleGenresRating}>
+                        <div>
+                            <h3>
+                                <span>{featuredMovie.original_title}</span> - 
+                                <span>{featuredMovie.release_date}</span> -
+                                <span>{featuredMovie.runtime}</span>
+                            </h3>
+                            <span>8.5 | 350k</span>
+                        </div>
                     </div>
-                    <div>
-                        Genre: <h4>{myMovie[0].Genre}</h4>
-                    </div>
-                    <div>
-                        Language: <h4>{myMovie[0].Language}</h4>
-                    </div>
-                    <div>
-                        Released: <h4>{myMovie[0].Released}</h4>
-                    </div>
-                    <div>
-                        Plot: <h4>{myMovie[0].Plot}</h4>
+                    <div className={styles.otherDetails}>
+                        <div className={styles.singleMovieDetail}>
+                            <p>
+                                {featuredMovie.overview}
+                            </p>
+                            <div className={styles.movieCasts}>
+                                <div>
+                                    Director: <span>Director Name</span>
+                                </div>
+                                <div>
+                                    Writers: <span>Jim O, Jakes Epps Jr, Peter Craig</span>
+                                </div>
+                                <div>
+                                    Stars: <span>Tom Cruise, Jennifer Lopez, Miles Taylor</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="actionsOtherMovies">
+                            <img src={buttonOne.src} alt="" width="80%" /><br/>
+                            <img src={buttonTwo.src} alt="" width="80%" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
 
 }
 
 export default SingleMovie;
-  
-  // This gets called on every request
-  export async function getServerSideProps(context) {
-    // Fetch data from external API
-    const res = await fetch(`https://www.omdbapi.com/?i=${context.query.movieid}&apikey=3f57fd83`)
-    const data = await res.json()
-  
-    // Pass data to the page via props
-    return { 
-        props: { 
-            singlemovie: data,
-        } 
-    }
-  }  

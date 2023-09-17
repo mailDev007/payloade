@@ -55,3 +55,79 @@
 .movieSlider li:hover p{
     display: block;
 }
+
+.horizontalAlignment {
+    padding-top: 50px;
+    width: 80%;
+    margin: 14px auto;
+}
+
+.flexHeader{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 21px;
+}
+
+.moviesHolder{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    justify-items: center;
+    margin-top: 40px;
+    row-gap: 50px;
+}
+
+.movieThumbnail{
+    width: 25%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.movieThumbnail:hover > img{
+    box-shadow: 10px 10px 10px #979797;
+}
+
+.movieDetail{
+    text-align: left;
+    padding: 2% 10% 12%;
+}
+
+.halfbMargin{
+    margin-bottom: 10px;
+}
+
+.halfbMargin:hover{
+    color: rgb(146, 1, 1);
+}
+
+.movieThumbnail p{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.movieThumbnail .moviegenre{
+    margin-top: 5px;
+    color: #9b9b9b;
+    font-size: 13px;
+}
+
+.movieThumbnail .rating{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.movieThumbnail .releaseYear{
+    display: inline-block;
+    color: #9b9b9b;
+    font-size: 13px;
+}
+
+.movieRate{
+    font-size: 14px;
+}
+
+.imdbRating{
+    display: flex;
+    column-gap: 10px;
+}
